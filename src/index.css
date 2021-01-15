@@ -60,3 +60,14 @@ body {
   .game .game-info {
     margin-left: 30px;
   }
+
+  .toggle-container {
+    width: 70px;
+    background-color: #c4c4c4;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 3px;
+    padding: 2px;
+    height: 32px;
+    position: relative;
+  }
