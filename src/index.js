@@ -17,33 +17,44 @@ function Square(props) {
     renderSquare(i) {
         return (
           <Square 
+              key={i}
               value={this.props.squares[i]} 
               onClick={()=>this.props.onClick(i)}
           />
           );
       }
     render() {
-      return (
-        <div>
-          <div className="board-row">
-            {this.renderSquare(0)}
-            {this.renderSquare(1)}
-            {this.renderSquare(2)}
-          </div>
-          <div className="board-row">
-            {this.renderSquare(3)}
-            {this.renderSquare(4)}
-            {this.renderSquare(5)}
-          </div>
-          <div className="board-row">
-            {this.renderSquare(6)}
-            {this.renderSquare(7)}
-            {this.renderSquare(8)}
-          </div>
-        </div>
-      );
+        let board = []
+
+        for (let i = 0; i < 3; i++) {
+            let row = [];
+            for (let j = 0; j < 3; j++) {
+                row.push(this.renderSquare(3*i+j));
+            }
+            board.push(<div className="board-row" key={i}>
+                            {row}
+                        </div>);
+        }
+
+        return(
+            <div className="board-game">
+                {board}
+            </div>
+        )
     }
   }
+
+  class Toggle extends React.Component {
+      render(){
+          return(
+                <div className="ui slider checkbox">
+                    <input type="checkbox"></input>
+                    <label className="toggle-header">Show step from last to first</label>
+                </div>
+            )
+        }
+  }
+
 
   class Game extends React.Component {
     constructor(props){
@@ -55,7 +66,7 @@ function Square(props) {
             }],
             currentPlayer : 'X',
             stepNumber : 0,
-            
+            toggleSelected : false      
         };
     }
 
@@ -80,7 +91,7 @@ function Square(props) {
     }
 
     switchPlayer(move){
-        if(move % 2 == 0){
+        if(move % 2 === 0){
             this.setState({currentPlayer:'X'})
         } else{
             this.setState({currentPlayer:'O'})
@@ -92,8 +103,14 @@ function Square(props) {
         this.setState({stepNumber : move});
     }   
 
+    handleToggle(){
+        this.setState(
+            {toggleSelected : !this.state.toggleSelected}
+        );
+    }
+
     render() {
-        const history = this.state.history;
+        const history = this.state.toggleSelected ? this.state.history.slice(0).reverse() : this.state.history;
         const current = history[this.state.stepNumber];
         const winner = calculateWinner(current.squares);
         const coords = [
@@ -141,6 +158,7 @@ function Square(props) {
           </div>
           <div className="game-info">
             <div>{status}</div>
+            <Toggle onClick={this.handleToggle}></Toggle>
             <ol>{moves}</ol>
           </div>
         </div>
