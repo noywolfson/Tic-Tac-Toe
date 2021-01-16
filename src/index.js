@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import 'semantic-ui-css/semantic.min.css'
 
 function Square(props) {
       return (
@@ -44,17 +45,24 @@ function Square(props) {
     }
   }
 
-  class Toggle extends React.Component {
-      render(){
-          return(
-                <div className="ui slider checkbox">
-                    <input type="checkbox"></input>
-                    <label className="toggle-header">Show step from last to first</label>
-                </div>
-            )
-        }
-  }
+  class Toggle extends React.Component{
+    handleToggle = (e) => {
+      this.props.handleToggle(e.target.checked);
+    }
 
+    render() {
+      return (
+        <div className="ui slider checkbox">
+          <input
+            type="checkbox"
+            name="name"
+            onChange={this.handleToggle}>
+          </input>
+          <label><h5>Show moves from last to first</h5></label>
+        </div>
+      )
+    }
+  }
 
   class Game extends React.Component {
     constructor(props){
@@ -66,8 +74,15 @@ function Square(props) {
             }],
             currentPlayer : 'X',
             stepNumber : 0,
-            toggleSelected : false      
+            toggleSelected : false     
         };
+    }
+
+    handleToggle(selected) {
+      console.log(selected);
+      this.setState({
+        toggleSelected : selected
+      })
     }
 
     handleClick(i){
@@ -103,15 +118,11 @@ function Square(props) {
         this.setState({stepNumber : move});
     }   
 
-    handleToggle(){
-        this.setState(
-            {toggleSelected : !this.state.toggleSelected}
-        );
-    }
-
     render() {
         const history = this.state.toggleSelected ? this.state.history.slice(0).reverse() : this.state.history;
-        const current = history[this.state.stepNumber];
+        // const current = history[this.state.stepNumber];
+        const stepNumber = this.state.toggleSelected ? (history.length-1) - this.state.stepNumber : this.state.stepNumber;
+        const current = history[stepNumber];
         const winner = calculateWinner(current.squares);
         const coords = [
             [0,0],
@@ -125,6 +136,7 @@ function Square(props) {
             [2,2]
         ]
         const moves = history.map((step, move) => {
+            move = this.state.toggleSelected ? Math.abs(move-(history.length-1)) : move;
             const desc = move ? 'Go to move #' + move + ' at position(' + coords[step.squareNumber][0]+ ',' + coords[step.squareNumber][1] + ')' : 'Go to start';
                     if(this.state.stepNumber === move){
                         return(
@@ -158,7 +170,8 @@ function Square(props) {
           </div>
           <div className="game-info">
             <div>{status}</div>
-            <Toggle onClick={this.handleToggle}></Toggle>
+            <Toggle handleToggle={(e) => this.handleToggle(e)}></Toggle>
+            {/* <Toggle handleToggle={this.handleToggle}></Toggle> */}
             <ol>{moves}</ol>
           </div>
         </div>
