@@ -24,7 +24,7 @@ body {
     background-color: rgb(12, 163, 201);
     float: left;
     font-size: 50px;
-    color: rgba(255, 255, 255, 0.788);
+    /* color: rgba(255, 255, 255, 0.788); */
     font-weight: bold;
     line-height: 34px;
     height: 70px;

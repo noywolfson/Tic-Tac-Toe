@@ -4,8 +4,14 @@ import './index.css';
 import 'semantic-ui-css/semantic.min.css'
 
 function Square(props) {
-      return (
-        <button 
+  let style={}
+  if(props.winner && props.winner.includes(props.squareNumber)){
+    style={color: '#ff0000c9'};
+  }else{
+    style={color: '#ffffffc9'};
+  }   
+  return (
+        <button style={style}
             className="square" 
             onClick={props.onClick}
         >
@@ -21,6 +27,8 @@ function Square(props) {
               key={i}
               value={this.props.squares[i]} 
               onClick={()=>this.props.onClick(i)}
+              winner={this.props.winner}
+              squareNumber={i}
           />
           );
       }
@@ -154,7 +162,7 @@ function Square(props) {
 
         let status;
         if(winner){
-            status = 'Winner: ' + winner;
+            status = 'Winner: ' + current.squares[winner[0]];
         } else {
             status = 'Next player: ' + this.state.currentPlayer;
         }
@@ -166,12 +174,12 @@ function Square(props) {
                 squares={current.squares} 
                 onClick={(i)=>this.handleClick(i)}
                 currentPlayer={this.state.currentPlayer}
+                winner={winner}
                 />
           </div>
           <div className="game-info">
             <div>{status}</div>
             <Toggle handleToggle={(e) => this.handleToggle(e)}></Toggle>
-            {/* <Toggle handleToggle={this.handleToggle}></Toggle> */}
             <ol>{moves}</ol>
           </div>
         </div>
@@ -193,7 +201,7 @@ function Square(props) {
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
       if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-        return squares[a];
+        return [a, b, c];
       }
     }
     return null;
