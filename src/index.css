@@ -14,10 +14,16 @@ body {
   }
 
   
-  .status {
-    margin-bottom: 10px;
+  .status{
+    background-color: rgb(12, 163, 201);
   }
-  
+  .draw{
+    background-color: rgb(12, 163, 201);
+    margin-left: 30%;
+    /* text-align: center;
+    align-items: center; */
+  }
+
   .square {
     background: #fff;
     border: 2px solid rgb(14, 94, 131);

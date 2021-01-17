@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import 'semantic-ui-css/semantic.min.css'
+import 'semantic-ui-css/semantic.min.css';
 
 function Square(props) {
       return (
@@ -85,6 +85,15 @@ function Square(props) {
       })
     }
 
+    isBoardFull(){
+      const history = this.state.history.slice(0, this.state.stepNumber+1);
+      const current = history[history.length-1];
+      const squares = current.squares.slice();
+      return!((squares.map(square => {
+        if(!square) return false;
+      })).includes(false));
+    }
+
     handleClick(i){
         const history = this.state.history.slice(0, this.state.stepNumber+1);
         const current = history[history.length-1];
@@ -93,6 +102,7 @@ function Square(props) {
         if(calculateWinner(squares) || squares[i]){
             return;
         }
+
         squares[i] = this.state.currentPlayer;
         this.switchPlayer(this.state.stepNumber+1)
         this.setState({
@@ -100,8 +110,7 @@ function Square(props) {
                 squares: squares,
                 squareNumber : i
             }]),
-            stepNumber : this.state.stepNumber+1,
-            
+            stepNumber : this.state.stepNumber+1, 
         });
     }
 
@@ -158,10 +167,16 @@ function Square(props) {
         } else {
             status = 'Next player: ' + this.state.currentPlayer;
         }
-        
+
+        const squares = current.squares.slice();
+        let draw = '';
+        if(!calculateWinner(squares) && this.isBoardFull()){
+          draw = 'It\'s a draw!';
+        }
       return (
         <div className="game">
           <div className="game-board">
+            <label className="draw"><b>{draw}</b></label><br/><br/>
             <Board 
                 squares={current.squares} 
                 onClick={(i)=>this.handleClick(i)}
@@ -169,7 +184,7 @@ function Square(props) {
                 />
           </div>
           <div className="game-info">
-            <div>{status}</div>
+            <label className="status"><b>{status}</b></label><br/><br/>
             <Toggle handleToggle={(e) => this.handleToggle(e)}></Toggle>
             {/* <Toggle handleToggle={this.handleToggle}></Toggle> */}
             <ol>{moves}</ol>
