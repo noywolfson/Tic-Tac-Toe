@@ -18,13 +18,13 @@ You can go back to previous moves in the game and continue from there.
 ![X-Winnwe](https://raw.githubusercontent.com/noywolfson/Tic-Tac-Toe/master/src/Images/X-Winner.png)
 
 ### Back to move #5
-![Back two moves before winning]https://raw.githubusercontent.com/noywolfson/Tic-Tac-Toe/master/src/Images/go-back-two-moves-before-winning.png)
+![Back two moves before winning](https://raw.githubusercontent.com/noywolfson/Tic-Tac-Toe/master/src/Images/go-back-two-moves-before-winning.png)
 
 ### Reverse moves list
-![Reverse moves list]https://raw.githubusercontent.com/noywolfson/Tic-Tac-Toe/master/src/Images/reverse-moves-list_2.png)
+![Reverse moves list](https://raw.githubusercontent.com/noywolfson/Tic-Tac-Toe/master/src/Images/reverse-moves-list_2.png)
 
 ### Draw
-![It's a draw!]https://raw.githubusercontent.com/noywolfson/Tic-Tac-Toe/master/src/Images/draw.png)
+![It's a draw!](https://raw.githubusercontent.com/noywolfson/Tic-Tac-Toe/master/src/Images/draw.png)
 
 
 ##   
