@@ -6,8 +6,9 @@ You can go back to previous moves in the game and continue from there.
 
 1. Clone/Download the zip file from the Tic-Tac-Toe repository to your local machine
 2. Navigate on your terminal to the cloned repository directory
-3. Start development server `npm start`.
-4. Enter this URL - http://localhost:3000 to your web browser
+3. Install requirements `npm install semantic-ui-react semantic-ui-css`
+4. Start development server `npm start`.
+5. Enter this URL - http://localhost:3000 to your web browser
 
 ## Screenshots
 
