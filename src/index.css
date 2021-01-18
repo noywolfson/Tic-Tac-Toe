@@ -14,17 +14,23 @@ body {
   }
 
   
-  .status {
-    margin-bottom: 10px;
+  .status{
+    background-color: rgb(12, 163, 201);
   }
-  
+  .draw{
+    background-color: rgb(12, 163, 201);
+    margin-left: 30%;
+    /* text-align: center;
+    align-items: center; */
+  }
+
   .square {
     background: #fff;
     border: 2px solid rgb(14, 94, 131);
     background-color: rgb(12, 163, 201);
     float: left;
     font-size: 50px;
-    color: rgba(255, 255, 255, 0.788);
+    /* color: rgba(255, 255, 255, 0.788); */
     font-weight: bold;
     line-height: 34px;
     height: 70px;
@@ -59,4 +65,15 @@ body {
 
   .game .game-info {
     margin-left: 30px;
+  }
+
+  .toggle-container {
+    width: 70px;
+    background-color: #c4c4c4;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 3px;
+    padding: 2px;
+    height: 32px;
+    position: relative;
   }
