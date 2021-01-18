@@ -195,10 +195,6 @@ function Square(props) {
           <div className="game-info">
             <label className="status"><b>{status}</b></label><br/><br/>
             <Toggle handleToggle={(e) => this.handleToggle(e)}></Toggle>
-<<<<<<< HEAD
-            {/* <Toggle handleToggle={this.handleToggle}></Toggle> */}
-=======
->>>>>>> 5420a600c522683cbc65debca01fbaf836ffb5e2
             <ol>{moves}</ol>
           </div>
         </div>
