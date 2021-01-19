@@ -1,5 +1,5 @@
 # Tic-Tac-Toe game
-A Tic-Tac-Toe game, implement in React.JS.\
+A Tic-Tac-Toe game, developed in React.JS.\
 You can go back to previous moves in the game and continue from there.
 
 ## Getting started
